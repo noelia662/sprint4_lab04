@@ -1,0 +1,93 @@
+---
+title: "Entrenamiento2_Lab4"
+author: "Noelia de Íscar"
+date: "2024-12-16"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+    theme: journal
+    highlight: tango
+---
+
+## Introducción
+
+En este documento se realiza un análisis exploratorio de los datos del conjunto de datos `mtcars`, que contiene información sobre el rendimiento y características de diferentes modelos de automóviles. El propósito de este análisis es explorar las relaciones entre variables y presentar algunos resultados clave.
+
+El análisis se estructurará en las siguientes secciones:
+
+1.  **Análisis de los Datos**: Carga y exploración inicial.
+2.  **Generación de Tablas**: Presentación de los datos en tablas estáticas e interactivas.
+3.  **Gráfico de Dispersión**: Visualización de la relación entre el rendimiento del motor y el peso del automóvil.
+4.  **Conclusiones**: Resumen de los hallazgos clave.
+
+## Análisis de los Datos
+
+A continuación, se carga el conjunto de datos `mtcars` para su análisis.
+
+```{r setup, include=FALSE}
+#knitr::opts_chunk$set(echo = FALSE)
+
+# Configuración global para los chunks de código
+knitr::opts_chunk$set(
+  echo = TRUE,           # Mostrar el código
+  warning = FALSE,       # No mostrar advertencias
+  message = FALSE,       # No mostrar mensajes
+  fig.path = 'figures/',  # Guardar gráficos en la carpeta 'figures/'
+  fig.width = 6,         # Ancho de los gráficos
+  fig.height = 4,         # Alto de los gráficos
+  dev = "png"            # Establecer el dispositivo de gráficos como PNG
+)
+
+# Cargar los datos mtcars
+data(mtcars)
+
+# Ver las primeras filas del conjunto de datos
+head(mtcars)
+
+# Resumen estadístico de los datos
+summary(mtcars)
+
+# Tabla estática con kable
+library(knitr)
+kable(head(mtcars), caption = "Primeras filas del conjunto de datos mtcars")
+
+
+# Tabla interactiva con DT
+library(DT)
+datatable(head(mtcars), caption = "Tabla interactiva con las primeras filas de mtcars")
+
+
+# Gráfico de dispersión: Peso vs. Rendimiento
+plot(mtcars$wt, mtcars$mpg, 
+     main = "Relación entre el Peso y el Rendimiento del Automóvil", 
+     xlab = "Peso (wt)", 
+     ylab = "Rendimiento (mpg)", 
+     pch = 19, col = "blue")
+
+```
+
+### Explicación de la estructura:
+
+1.  **Encabezado YAML**: El encabezado del archivo `.Rmd` se encuentra entre `---` al principio del archivo. En este caso, se activa un índice de contenido (TOC) y se personaliza su profundidad (`toc_depth: 2`). Además, se usa el tema `journal` para el estilo visual del documento generado.
+
+2.  **Bloque de Setup**: Se configura que el código se muestre (`echo = TRUE`), pero se ocultan advertencias y mensajes innecesarios (`warning = FALSE`, `message = FALSE`). También se especifica la carpeta para guardar gráficos generados (`fig.path = 'figures/'`) y se ajusta el tamaño de los gráficos.
+
+3.  **Secciones Markdown**: Se usan encabezados de nivel 1 (`#`) y 2 (`##`) para estructurar el contenido. Además, se incluyen elementos de lista numerada y de texto con énfasis en algunas palabras clave.
+
+4.  **Análisis de Datos**: Se carga el conjunto de datos `mtcars` y se muestran las primeras filas y un resumen estadístico con `summary(mtcars)`.
+
+5.  **Generación de Tablas**:
+
+    -   Una tabla estática con la librería `kable`.
+    -   Una tabla interactiva con la librería `DT`.
+
+6.  **Gráfico de Dispersión**: Se genera un gráfico básico de dispersión para visualizar la relación entre el peso (`wt`) y el rendimiento (`mpg`) de los vehículos.
+
+7.  **Conclusiones**: Se resumen los hallazgos clave del análisis.
+
+### Personalización del Índice de Contenido (TOC):
+
+-   El índice de contenido está activado con `toc: true` y se configura para mostrar hasta el nivel de los subtítulos con `toc_depth: 2`.
+
+Este es un ejemplo completo para un informe de análisis de datos utilizando R Markdown, que incluye tablas estáticas e interactivas, gráficos, personalización del estilo y un índice de contenido. Asegúrate de probarlo y ajustarlo según tus necesidades.
